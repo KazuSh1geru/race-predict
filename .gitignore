@@ -5,3 +5,9 @@
 *.log
 *.gz
 .ipynb*
+.python-version
+
+race_url
+race_html
+predict
+logfile

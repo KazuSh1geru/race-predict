@@ -15,6 +15,7 @@ OWN_FILE_NAME = path.splitext(path.basename(__file__))[0]
 RACR_URL_DIR = "race_url"
 RACR_HTML_DIR = "race_html"
 
+START_YEAR = 2018
 
 import logging
 logger = logging.getLogger(__name__) #ファイルの名前を渡す
@@ -26,7 +27,7 @@ def my_makedirs(path):
 
 def get_race_html():
     # 去年までのデータ
-    for year in range(2008, now_datetime.year):
+    for year in range(START_YEAR, now_datetime.year):
         for month in range(1, 13):
                 get_race_html_by_year_and_mon(year,month)
     # 今年のデータ
@@ -53,7 +54,7 @@ def get_race_html_by_year_and_mon(year,month):
                     response = requests.get(url)
                     response.encoding = response.apparent_encoding # https://qiita.com/nittyan/items/d3f49a7699296a58605b
                     html = response.text
-                    time.sleep(1)
+                    # time.sleep(1)
                     with open(save_file_path, 'w') as file:
                         file.write(html)
             logging.info("saved " + str(len(urls)) +" htmls ("+str(year) +" "+ str(month) + ")")
